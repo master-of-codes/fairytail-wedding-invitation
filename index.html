@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Once Upon Our Love | A Fairytale Wedding</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@300;400;500&family=Dancing+Script:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gold: #e8c28a;
+            --primary-glow: rgba(232, 194, 138, 0.6);
+            --moonlight: #f0f7ff;
+            --twilight: #1a1a2e;
+            --rose: #c97b84;
+            --deep-purple: #3d2b56;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--moonlight);
+            overflow-x: hidden;
+            background-color: #000;
+            cursor: default;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Background Particles */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Petals Animation */
+        .petal {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            background: url('./assets/golden-leaf.png') no-repeat center/contain;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: -1;
+            filter: brightness(1.2);
+        }
+
+        /* Audio Control */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(231, 113, 17, 0.7);
+            border: 1px solid var(--primary-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-gold);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .audio-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .audio-control i {
+            font-size: 22px;
+        }
+
+        .audio-control.rotating i {
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Chapters */
+        .chapter {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+
+        .chapter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
+        .chapter-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 90%;
+            max-width: 900px;
+            padding: 80px 0;
+        }
+
+        /* Opening Scene - Desktop */
+        #opening {
+            background-image: url('./assets/img2.png');
+        }
+
+        /* Events Chapter - Desktop */
+        #events {
+            background-image: url('./assets/img3.png');
+        }
+
+        /* Starry Interlude - Desktop */
+        #starry-interlude {
+            background-image: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            min-height: 80vh;
+        }
+
+        /* Countdown - Desktop */
+        #countdown {
+            background-image: url('https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        }
+
+        /* Location - Desktop */
+        #location {
+            background-image: url('https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        }
+
+        /* Storybook - Desktop */
+        #storybook {
+            background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            min-height: 80vh;
+        }
+
+        /* Wish Under the Stars - Desktop */
+        #wish-stars {
+            background-image: url('https://images.unsplash.com/photo-1538370965046-79c0d6907d47?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            min-height: 70vh;
+        }
+
+        .bride-groom {
+            font-size: 5.5rem;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px var(--primary-glow);
+            color: var(--primary-gold);
+            line-height: 1.2;
+        }
+
+        .and {
+            font-size: 3rem;
+            margin: 0 15px;
+            color: var(--moonlight);
+        }
+
+        .date {
+            font-size: 2rem;
+            letter-spacing: 5px;
+            margin-top: 30px;
+            color: var(--moonlight);
+            font-weight: 100px;
+        }
+
+        .glowing-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232,194,138,0.4) 0%, rgba(232,194,138,0) 70%);
+            filter: blur(8px);
+            z-index: 0;
+        }
+
+        /* Events Chapter */
+        .chapter-title {
+            font-size: 3.5rem;
+            margin-bottom: 60px;
+            color: var(--primary-gold);
+            text-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .events-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .event-card {
+            width: 300px;
+            height: 600px;
+            position: relative;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transform-style: preserve-3d;
+        }
+
+        .event-card:hover .card-inner {
+            animation: flip-left 0.8s ease-in-out forwards;
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: rgba(206, 109, 13, 0.8);
+            border: 1px solid var(--primary-gold);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 50%;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+        }
+
+        .image-container.flipped {
+            transform: rotateY(-180deg);
+        }
+
+        @keyframes flip-left {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(-180deg); }
+        }
+
+        .main-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            display: block;
+            width: 48%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 65%;
+            /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
+        }
+
+        .small-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 100%;
+            /* border-radius: 50%; */
+            object-fit: cover;
+        }
+
+
+
+        .event-details-container {
+            height: 40%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .event-title {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+
+        .event-details {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('./assets/twinkle.png') no-repeat center/contain;
+            opacity: 0.8;
+            animation: sparkle 3s infinite alternate;
+        }
+
+        @keyframes sparkle {
+        0% { opacity: 0.3; transform: scale(0.8); }
+        100% { opacity: 0.9; transform: scale(1.2); }
+        }
+
+
+
+        .poetry {
+            font-size: 2rem;
+            line-height: 1.8;
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            position: relative;
+        }
+
+        .poetry::before, .poetry::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-gold);
+            position: absolute;
+            opacity: 0.7;
+        }
+
+        .poetry::before {
+            top: 0;
+            left: -20px;
+        }
+
+        .poetry::after {
+            bottom: -40px;
+            right: -20px;
+        }
+
+        /* Countdown */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .countdown-box {
+            width: 120px;
+            height: 120px;
+            padding: 25px 15px;
+            background: rgba(223, 111, 13, 0.8);
+            border-radius: 10px;
+            border: 1px solid var(--primary-gold);
+            box-shadow: 0 0 20px rgba(232, 194, 138, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .countdown-value {
+            font-size: 3.5rem;
+            font-weight: normal;
+            font-family: 'Dancing Script', cursive;
+            color: var(--primary-gold);
+            text-shadow: 0 0 10px var(--primary-glow);
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+
+        .map-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 18px 40px;
+            background: rgba(206, 109, 13, 0.7);
+            border: 2px solid var(--primary-gold);
+            border-radius: 50px;
+            color: var(--primary-gold);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .map-button:hover {
+            background: var(--primary-gold);
+            color: var(--twilight);
+            box-shadow: 0 0 30px var(--primary-glow);
+            transform: translateY(-5px);
+        }
+
+        .map-button i {
+            margin-right: 10px;
+        }
+
+        /* Storybook Message */
+        .storybook-content {
+            max-width: 800px;
+            background: rgba(206, 109, 13, 0.7);
+            padding: 60px;
+            border-radius: 5px;
+            border: 1px solid var(--primary-gold);
+            text-align: left;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .storybook-content::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid rgba(232, 194, 138, 0.3);
+            pointer-events: none;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .signature {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            text-align: right;
+            color: var(--primary-gold);
+            margin-top: 40px;
+        }
+
+        /* Wish Under the Stars */
+        .wish-container {
+            background: rgba(206, 109, 13, 0.7);
+            padding: 50px;
+            border-radius: 10px;
+            border: 1px solid var(--primary-gold);
+            max-width: 700px;
+        }
+
+        .wish-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--primary-gold);
+        }
+
+        .wish-text {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .star {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('./assets/twinkle.png') no-repeat center/contain;
+            opacity: 0;
+            animation: twinkle 3s infinite alternate;
+        }
+
+        .brahma-logo {
+            height: 5%;
+            width: 5%;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.1; transform: scale(0.8); }
+            100% { opacity: 0.9; transform: scale(1.2); }
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(224, 131, 39, 0.7);
+            border-top: 1px solid var(--primary-gold);
+        }
+
+        .footer-text {
+            font-size: 1.2rem;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+        }
+
+        /* Mobile View Background Images */
+        @media (max-width: 768px) {
+            /* Opening Scene - Mobile */
+            #opening {
+                background-image: url('./assets/img1.png');
+            }
+
+            /* Events Chapter - Mobile */
+            #events {
+                background-image: url('./assets/img3.png');
+            }
+
+            /* Starry Interlude - Mobile */
+            #starry-interlude {
+                background-image: url('./assets/img2.png');
+                min-height: 80vh;
+            }
+
+            /* Countdown - Mobile */
+            #countdown {
+                background-image: url('./assets/wedding2\ portrait.png');
+            }
+
+            /* Location - Mobile */
+            #location {
+                background-image: url('./assets/ring\ exchange\ portrait.png');
+            }
+
+            /* Storybook - Mobile */
+            #storybook {
+                background-image: url('./assets/ring\ exchange\ portrait.png');
+                min-height: 80vh;
+            }
+
+            /* Wish Under the Stars - Mobile */
+            #wish-stars {
+                background-image: url('./assets/img4.png');
+                min-height: 70vh;
+            }
+
+            .bride-groom {
+                font-size: 3.5rem;
+            }
+            
+            .and {
+                font-size: 2rem;
+            }
+            
+            .date {
+                font-size: 2.1rem;
+                letter-spacing: 3px;    
+                font-weight: 600px;
+            }
+            
+            .chapter-title {
+                font-size: 2.5rem;
+            }
+            
+            .countdown-box {
+                width: 60px;
+                height: 60px;
+                padding: 12.5px 7.5px;
+            }
+
+            .countdown-value {
+                font-size: 1.75rem;
+            }
+
+            .countdown-label {
+                font-size: 0.6rem;
+            }
+            
+            .storybook-content {
+                padding: 30px;
+            }
+            
+            .poetry {
+                font-size: 1.5rem;
+                padding: 20px;
+            }
+            
+            .petal {
+                width: 18px;
+                height: 18px;
+            }
+
+            .main-image {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 0;
+                display: block;
+                width: 74%;
+                height: 70%;
+                object-fit: cover;
+                border-radius: 60%;
+                /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
+            }
+
+            .small-image {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                /* box-shadow: 0 2px 8px rgba(0,0,0,0.2); */
+                object-fit: cover;
+            }
+
+            .small-image:hover {
+                transform: translate(-50%, -50%) scale(1.05);
+                transition: transform 0.3s ease;
+            }
+
+            .event-card {
+                width: 300px;
+                height: 900px;
+                position: relative;
+                perspective: 1000px;
+                cursor: pointer;
+            }
+
+            .brahma-logo {
+                height: 10%;
+                width: 10%;
+            }
+
+
+
+            }
+
+            
+
+        @media (max-width: 480px) {
+            .bride-groom {
+                font-size: 2.8rem;
+            }
+            
+            .countdown-container {
+                gap: 10px;
+            }
+            
+            .countdown-box {
+                width: 70px;
+                height: 70px;
+                padding: 15px 5px;
+            }
+            
+            .countdown-value {
+                font-size: 3vw;
+            }
+
+            .countdown-label {
+                font-size: 2.5vw;
+            }
+            
+            .map-button {
+                padding: 15px 30px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio Control -->
+    <div class="audio-control" id="audioControl">
+        <i class="fas fa-play-circle"></i>
+    </div>
+
+    <!-- Background Particles -->
+    <div id="particles-js"></div>
+
+    <!-- Opening Chapter -->
+    <section class="chapter" id="opening">
+        <div class="chapter-content" data-aos="fade-up" data-aos-duration="1500">
+            <h1 class="bride-groom">Eleanor <span class="and">&</span> Alexander</h1>
+            <p class="date" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">SEPTEMBER 21, 2026</p>
+            <p class="invitation-text" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">Invite you to our fairytale wedding</p>
+        </div>
+        
+        <!-- Glowing Orbs -->
+        <div class="glowing-orb" style="width: 300px; height: 300px; top: 10%; left: 5%;"></div>
+        <div class="glowing-orb" style="width: 200px; height: 200px; bottom: 15%; right: 10%;"></div>
+    </section>
+
+    <!-- Events Chapter -->
+    <section class="chapter" id="events">
+        <div class="chapter-content">
+            <h2 class="chapter-title" data-aos="fade-up">Once Upon Our Beginning</h2>
+            <div class="events-container">
+                <div class="event-card">
+                    <div class="image-container">
+                        <img class="main-image" src="./assets/img1.png" alt="Ceremony" >
+                        <img class="small-image" src="./assets/frame.png" alt="Overlay">
+                    </div>
+                    <div class="event-details-container">
+                        <h3 class="event-title">Ceremony</h3>
+                        <p class="event-details">St. Mary's Cathedral</p>
+                        <p class="event-details">4:30 PM</p>
+                        <p class="event-details">Twilight Blessings</p>
+                        <p class="event-details"><a href="https://maps.google.com?q=St. Mary's Cathedral" target="_blank" style="color: inherit; text-decoration: none;">View Location</a></p>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="image-container">
+                        <img class="main-image" src="./assets/reception portrait.png" alt="Reception">
+                        <img class="small-image" src="./assets/frame.png" alt="Overlay">
+                    </div>
+                    <div class="event-details-container">
+                        <h3 class="event-title">Reception</h3>
+                        <p class="event-details">Enchanted Gardens</p>
+                        <p class="event-details">6:00 PM</p>
+                        <p class="event-details">Moonlit Celebration</p>
+                        <p class="event-details"><a href="https://maps.google.com?q=Enchanted Gardens" target="_blank" style="color: inherit; text-decoration: none;">View Location</a></p>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="image-container">
+                        <img class="main-image" src="./assets/pre-wedding portrait.png" alt="Fairytale Ball">
+                        <img class="small-image" src="./assets/frame.png" alt="Overlay">
+                    </div>
+                    <div class="event-details-container">
+                        <h3 class="event-title">Fairytale Ball</h3>
+                        <p class="event-details">Enchanted Ballroom</p>
+                        <p class="event-details">8:00 PM</p>
+                        <p class="event-details">Magical Evening</p>
+                        <p class="event-details"><a href="https://maps.google.com?q=Enchanted Ballroom" target="_blank" style="color: inherit; text-decoration: none;">View Location</a></p>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- Starry Interlude -->
+    <section class="chapter" id="starry-interlude">
+        <div class="chapter-content">
+            <div class="poetry" data-aos="fade-left">
+                In a sky woven with twilight's last gleam,<br>
+                Two stars found their way to a shared dream.<br>
+                With each gentle sigh of the evening breeze,<br>
+                Our hearts learned the language of rustling trees.<br>
+                Now under the moon's soft, silvery light,<br>
+                We pledge our forever, this magical night.
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Chapter -->
+    <section class="chapter" id="countdown">
+        <div class="chapter-content">
+            <h2 class="chapter-title" data-aos="fade-up">Our Fairytale Begins In</h2>
+            <div class="countdown-container" data-aos="fade-up" data-aos-delay="300">
+                <div class="countdown-box">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">DAYS</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">HOURS</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">MINUTES</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">SECONDS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Chapter -->
+    <section class="chapter" id="location">
+        <div class="chapter-content">
+            <h2 class="chapter-title" data-aos="fade-up">Enchanted Location</h2>
+            <p class="location-details" data-aos="fade-up" data-aos-delay="200" style="font-size: 1.5rem; margin-bottom: 10px;">The Starlight Gardens Estate</p>
+            <p class="location-details" data-aos="fade-up" data-aos-delay="300" style="font-size: 1.3rem;">123 Moonbeam Avenue, Willow Creek</p>
+            <a href="https://maps.google.com" target="_blank" class="map-button" data-aos="fade-up" data-aos-delay="400">
+                <i class="fas fa-map-marker-alt"></i> View Enchanted Map
+            </a>
+        </div>
+    </section>
+
+    <!-- Storybook Message -->
+    <section class="chapter" id="storybook">
+        <div class="chapter-content">
+            <div class="storybook-content" data-aos="fade-up">
+                <h2 class="chapter-title" style="text-align: center; margin-bottom: 40px;">Our Love Story</h2>
+                <p class="message" data-aos="fade-left" data-aos-delay="300">
+                    Once upon a time, in a world not so far away, two souls wandered under the same stars, never knowing their paths were destined to cross. It was on an autumn evening, when the sky painted itself in hues of lavender and gold, that our eyes first met and our story began.
+                </p>
+                <p class="message" data-aos="fade-right" data-aos-delay="500">
+                    Through seasons that changed like pages in a storybook, we discovered that love isn't found in grand gestures but in quiet moments—shared laughter, whispered dreams, and hands held beneath moonlight. We learned that the most magical adventures are the ones we create together.
+                </p>
+                <p class="message" data-aos="fade-left" data-aos-delay="700">
+                    Now, as we prepare to write the next chapter, we invite you to witness our vows under the twilight sky. Join us as we celebrate not just a wedding, but the beginning of our own fairytale—a story of love, magic, and happily ever after.
+                </p>
+                <div class="signature" data-aos="fade-left" data-aos-delay="900">With love, Eleanor & Alexander</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wish Under the Stars -->
+    <section class="chapter" id="wish-stars">
+        <div class="chapter-content">
+            <div class="wish-container" data-aos="fade-up">
+                <h2 class="wish-title">Wish Upon Our Stars</h2>
+                <p class="wish-text" data-aos="fade-left" data-aos-delay="300">
+                    As the stars watch over our union, we invite you to make a wish for our future together. Whisper it to the night sky, and let the cosmos carry your blessing to our hearts.
+                </p>
+                <p class="wish-text" data-aos="fade-right" data-aos-delay="600">
+                    In lieu of traditional gifts, please consider contributing to our "Starlight Honeymoon Fund" or donating to the "Children's Fairytale Foundation" to bring magical stories to young hearts.
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container" data-aos="fade-up" data-aos-delay="400">
+            <p class="footer-text">Our story continues under the eternal twilight</p>
+            <p class="footer-text" style="font-size: 1rem; opacity: 0.8;">Formal attire in shades of midnight, twilight, and moonlight requested</p>
+            <p class="footer-text" style="font-size: 1rem; margin-top: 30px; opacity: 0.7;">© 2026 Eleanor & Alexander's Fairytale Wedding</p>
+            <p class="footer-text" style="font-size: 1rem; margin-top: 30px; opacity: 0.9; display: flex; align-items: center; justify-content: center;"><img src="./assets/logo.png" style="border-radius: 50%; display: inline; margin: auto 15px;" class="brahma-logo"/> Developed By Brahma Web Invitations.</p>
+        </div>
+    </footer>
+
+    <!-- Confetti Container -->
+    <canvas id="confettiCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; display:none;"></canvas>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1200,
+            once: false,
+            offset: 100
+        });
+
+        // Background Audio
+        const audioControl = document.getElementById('audioControl');
+        let audio = new Audio('./assets/pure-love-304010.mp3');
+        audio.loop = true;
+        audio.volume = 0.3;
+        let audioEnabled = false;
+
+        function handleAudioControl() {
+            if (audioEnabled) {
+                if (audio.paused) {
+                    audio.play().then(() => {
+                        audioControl.innerHTML = '<i class="fas fa-pause"></i>';
+                        audioControl.classList.add('rotating');
+                    }).catch(e => {
+                        console.log("Play failed:", e);
+                    });
+                } else {
+                    audio.pause();
+                    audioControl.innerHTML = '<i class="fas fa-play"></i>';
+                    audioControl.classList.remove('rotating');
+                }
+            } else {
+                audio.play().then(() => {
+                    audioEnabled = true;
+                    audioControl.classList.add('rotating');
+                    audioControl.innerHTML = '<i class="fas fa-pause"></i>';
+                }).catch(e => {
+                    console.log("Play failed:", e);
+                });
+            }
+        }
+
+        audioControl.addEventListener('click', handleAudioControl);
+        audioControl.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            handleAudioControl();
+        });
+
+        // Particles.js Configuration
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#e8c28a" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: { enable: false },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            }
+        });
+
+        // Petals Creation and Animation
+        const maxPetals = 10;
+        let petals = [];
+        let petalInterval;
+        let petalsActive = true;
+
+        function createPetal() {
+            if (!petalsActive || petals.length >= maxPetals) return;
+            
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            
+            // Random properties
+            const size = 15 + Math.random() * 20;
+            const startX = Math.random() * window.innerWidth;
+            const rotation = Math.random() * 360;
+            const driftSpeed = 0.5 + Math.random() * 1.5;
+            const fallSpeed = 1 + Math.random() * 2;
+            const opacity = 0.3 + Math.random() * 0.5;
+            
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            petal.style.left = `${startX}px`;
+            petal.style.top = `-30px`;
+            petal.style.opacity = opacity;
+            petal.style.transform = `rotate(${rotation}deg)`;
+            petal.style.transition = `transform ${driftSpeed}s linear`;
+            
+            document.body.appendChild(petal);
+            petals.push(petal);
+            
+            // Animate petal falling
+            const fallAnimation = setInterval(() => {
+                if (!petalsActive) {
+                    clearInterval(fallAnimation);
+                    return;
+                }
+                
+                const currentTop = parseFloat(petal.style.top);
+                const currentLeft = parseFloat(petal.style.left);
+                
+                // Move down
+                petal.style.top = `${currentTop + fallSpeed}px`;
+                
+                // Slight horizontal drift
+                const driftAmount = (Math.random() - 0.5) * 2;
+                petal.style.left = `${currentLeft + driftAmount}px`;
+                
+                // Remove if out of screen
+                if (currentTop > window.innerHeight + 50) {
+                    clearInterval(fallAnimation);
+                    petal.remove();
+                    const index = petals.indexOf(petal);
+                    if (index > -1) petals.splice(index, 1);
+                }
+            }, 50);
+        }
+
+        // Start petal flow
+        function startPetalFlow() {
+            petalInterval = setInterval(createPetal, 800);
+            // Create initial petals
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => createPetal(), i * 300);
+            }
+        }
+
+        // Stop petal flow
+        function stopPetalFlow() {
+            clearInterval(petalInterval);
+            petalsActive = false;
+        }
+
+        // Resume petal flow
+        function resumePetalFlow() {
+            petalsActive = true;
+            startPetalFlow();
+        }
+
+        // Countdown Timer
+        const weddingDate = new Date('Sep 21, 2036 16:30:00').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = weddingDate - now;
+            
+            if (timeLeft < 0) {
+                // Wedding day has arrived
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                
+                // Trigger confetti if not already triggered
+                if (petalsActive) {
+                    triggerConfettiCelebration();
+                }
+                return;
+            }
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days === 0 ? '0' : days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours === 0 ? '0' : hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes === 0 ? '0' : minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds === 0 ? '0' : seconds.toString().padStart(2, '0');
+        }
+
+        // Confetti Celebration
+        function triggerConfettiCelebration() {
+            // Stop petals
+            stopPetalFlow();
+            
+            // Show confetti canvas
+            const canvas = document.getElementById('confettiCanvas');
+            canvas.style.display = 'block';
+            
+            // First confetti burst from bottom-left
+            confetti({
+                particleCount: 150,
+                angle: 60,
+                spread: 80,
+                origin: { x: 0, y: 1 },
+                colors: ['#e8c28a', '#f0f7ff', '#c97b84', '#ffffff']
+            });
+            
+            // Second confetti burst from bottom-right after delay
+            setTimeout(() => {
+                confetti({
+                    particleCount: 150,
+                    angle: 120,
+                    spread: 80,
+                    origin: { x: 1, y: 1 },
+                    colors: ['#e8c28a', '#f0f7ff', '#c97b84', '#ffffff']
+                });
+                
+                // Wait for confetti to settle, then hide canvas and resume petals
+                setTimeout(() => {
+                    canvas.style.display = 'none';
+                    setTimeout(() => {
+                        resumePetalFlow();
+                    }, 5000);
+                }, 5000);
+            }, 1000);
+        }
+
+        // Create stars for wish section
+        function createStars() {
+            const wishSection = document.getElementById('wish-stars');
+            for (let i = 0; i < 25; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                wishSection.appendChild(star);
+            }
+        }
+
+        // Initialize everything when page loads
+        window.addEventListener('load', function() {
+            // Start petal flow
+            startPetalFlow();
+
+            // Initialize countdown
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // Create stars
+            createStars();
+
+            // Attempt autoplay on load, fallback to first scroll if blocked
+            audio.play().then(() => {
+                audioEnabled = true;
+                audioControl.classList.add('rotating');
+                audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+            }).catch(e => {
+                console.log("Autoplay failed:", e);
+                // Fallback: Enable audio on first scroll
+                let firstScroll = true;
+                window.addEventListener('scroll', function() {
+                    if (firstScroll && !audioEnabled) {
+                        audioControl.click();
+                        firstScroll = false;
+                    }
+                }, { once: true });
+            });
+
+            // Flip animation on scroll
+            const imageContainers = document.querySelectorAll('.image-container');
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('flipped');
+                    } else {
+                        entry.target.classList.remove('flipped');
+                    }
+                });
+            }, observerOptions);
+
+            imageContainers.forEach(container => {
+                observer.observe(container);
+            });
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            // Update particles on resize
+            if (typeof pJSDom !== 'undefined' && pJSDom.length > 0) {
+                pJSDom[0].pJS.fn.particlesRefresh();
+            }
+        });
+    </script>
+</body>
+</html>
