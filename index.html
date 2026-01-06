@@ -115,6 +115,7 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            background-repeat: no-repeat;
             overflow: hidden;
         }
 
@@ -530,6 +531,10 @@
         /* Mobile View Background Images */
         @media (max-width: 768px) {
             /* Opening Scene - Mobile */
+
+            .chapter-content {
+                margin-top: -15%;
+            }
             #opening {
                 background-image: url('./assets/img1.png');
             }
