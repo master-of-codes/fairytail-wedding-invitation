@@ -4,12 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:image" content="https://github.com/master-of-codes/fairytail-wedding-invitation/blob/main/assets/logo.png">
-
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    
+    <!-- iOS Meta Tags -->
+    <link rel="apple-touch-icon" href="./assets/logo.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Fairytale Wedding">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Eleanor & Alexander's Fairytale Wedding Invitation">
+    
     <title>Once Upon Our Love | A Fairytale Wedding</title>
     <link rel="icon" href="./assets/logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@300;400;500&family=Dancing+Script:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    
+    <!-- PWA Install Dialog Styles -->
+    <style>
+        /* PWA Install Dialog */
+        .pwa-dialog {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pwa-dialog-content {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(40, 40, 40, 0.95));
+            border: 2px solid var(--primary-gold);
+            border-radius: 15px;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(232, 194, 138, 0.3);
+            animation: dialogAppear 0.5s ease-out;
+        }
+
+        @keyframes dialogAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pwa-dialog h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .pwa-dialog p {
+            margin-bottom: 25px;
+            line-height: 1.6;
+            color: var(--moonlight);
+        }
+
+        .pwa-dialog-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .pwa-dialog-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            min-width: 100px;
+        }
+
+        .install-btn {
+            background-color: var(--primary-gold);
+            color: #000;
+        }
+
+        .install-btn:hover {
+            background-color: #f5d39d;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(232, 194, 138, 0.4);
+        }
+
+        .cancel-btn {
+            background-color: transparent;
+            color: var(--primary-gold);
+            border: 2px solid var(--primary-gold);
+        }
+
+        .cancel-btn:hover {
+            background-color: rgba(232, 194, 138, 0.1);
+            transform: translateY(-3px);
+        }
+    </style>
+    
     <style>
         * {
             margin: 0;
@@ -298,7 +406,6 @@
             height: auto;
             object-fit: cover;
             border-radius: 65%;
-            /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
         }
 
         .small-image {
@@ -308,11 +415,8 @@
             transform: translate(-50%, -50%);
             width: 70%;
             height: 100%;
-            /* border-radius: 50%; */
             object-fit: cover;
         }
-
-
 
         .event-details-container {
             height: 40%;
@@ -344,8 +448,6 @@
         0% { opacity: 0.3; transform: scale(0.8); }
         100% { opacity: 0.9; transform: scale(1.2); }
         }
-
-
 
         .poetry {
             font-size: 2rem;
@@ -533,8 +635,6 @@
 
         /* Mobile View Background Images */
         @media (max-width: 768px) {
-            /* Opening Scene - Mobile */
-
             .chapter-content {
                 margin-top: -15%;
             }
@@ -542,34 +642,28 @@
                 background-image: url('./assets/img1.png');
             }
 
-            /* Events Chapter - Mobile */
             #events {
                 background-image: url('./assets/img3.png');
             }
 
-            /* Starry Interlude - Mobile */
             #starry-interlude {
                 background-image: url('./assets/img2.png');
                 min-height: 80vh;
             }
 
-            /* Countdown - Mobile */
             #countdown {
                 background-image: url('./assets/wedding2\ portrait.png');
             }
 
-            /* Location - Mobile */
             #location {
                 background-image: url('./assets/ring\ exchange\ portrait.png');
             }
 
-            /* Storybook - Mobile */
             #storybook {
                 background-image: url('./assets/ring\ exchange\ portrait.png');
                 min-height: 80vh;
             }
 
-            /* Wish Under the Stars - Mobile */
             #wish-stars {
                 background-image: url('./assets/img4.png');
                 min-height: 70vh;
@@ -632,7 +726,6 @@
                 height: 70%;
                 object-fit: cover;
                 border-radius: 60%;
-                /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
             }
 
             .small-image {
@@ -643,7 +736,6 @@
                 width: 100%;
                 height: 100%;
                 border-radius: 50%;
-                /* box-shadow: 0 2px 8px rgba(0,0,0,0.2); */
                 object-fit: cover;
             }
 
@@ -664,12 +756,7 @@
                 height: 10%;
                 width: 10%;
             }
-
-
-
-            }
-
-            
+        }
 
         @media (max-width: 480px) {
             .bride-groom {
@@ -702,6 +789,19 @@
     </style>
 </head>
 <body>
+    <!-- PWA Install Dialog -->
+    <div class="pwa-dialog" id="pwaDialog">
+        <div class="pwa-dialog-content">
+            <h3>Install Fairytale Wedding App</h3>
+            <p>Do you want to install the <strong>Fairytale Wedding</strong> app on your device?</p>
+            <p>This will allow you to access the wedding invitation offline and get a better experience.</p>
+            <div class="pwa-dialog-buttons">
+                <button class="pwa-dialog-btn install-btn" id="installButton">Install</button>
+                <button class="pwa-dialog-btn cancel-btn" id="cancelButton">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Audio Control -->
     <div class="audio-control" id="audioControl">
         <i class="fas fa-play-circle"></i>
@@ -864,7 +964,10 @@
             <p class="footer-text">Our story continues under the eternal twilight</p>
             <p class="footer-text" style="font-size: 1rem; opacity: 0.8;">Formal attire in shades of midnight, twilight, and moonlight requested</p>
             <p class="footer-text" style="font-size: 1rem; margin-top: 30px; opacity: 0.7;">© 2026 Eleanor & Alexander's Fairytale Wedding</p>
-            <p class="footer-text" style="font-size: 1rem; margin-top: 30px; opacity: 0.9; display: flex; align-items: center; justify-content: center;"><img src="./assets/logo.png" style="border-radius: 50%; display: inline; margin: auto 15px;" class="brahma-logo"/> Developed By Brahma Web Invitations.</p>
+            <p class="footer-text" style="font-size: 1rem; margin-top: 30px; opacity: 0.9; display: flex; align-items: center; justify-content: center;">
+                <img src="./assets/logo.png" style="border-radius: 50%; display: inline; margin: auto 15px;" class="brahma-logo" id="installLogo" title="Double-click to install app"/>
+                Developed By Brahma Web Invitations.
+            </p>
         </div>
     </footer>
 
@@ -875,7 +978,167 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    
     <script>
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // Create service worker inline content
+                const swContent = `
+                    const CACHE_NAME = 'fairytale-wedding-v1';
+                    const urlsToCache = [
+                        './',
+                        './index.html',
+                        './assets/logo.png',
+                        './assets/img1.png',
+                        './assets/img2.png',
+                        './assets/img3.png',
+                        './assets/img4.png',
+                        './assets/frame.png',
+                        './assets/golden-leaf.png',
+                        './assets/twinkle.png',
+                        './assets/reception portrait.png',
+                        './assets/pre-wedding portrait.png',
+                        './assets/wedding2 portrait.png',
+                        './assets/ring exchange portrait.png',
+                        './assets/pure-love-304010.mp3',
+                        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+                        'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@300;400;500&family=Dancing+Script:wght@400&display=swap',
+                        'https://unpkg.com/aos@2.3.1/dist/aos.css',
+                        'https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js',
+                        'https://unpkg.com/aos@2.3.1/dist/aos.js',
+                        'https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js'
+                    ];
+
+                    self.addEventListener('install', event => {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(cache => {
+                                    return cache.addAll(urlsToCache);
+                                })
+                        );
+                    });
+
+                    self.addEventListener('fetch', event => {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(response => {
+                                    if (response) {
+                                        return response;
+                                    }
+                                    return fetch(event.request);
+                                })
+                        );
+                    });
+
+                    self.addEventListener('activate', event => {
+                        const cacheWhitelist = [CACHE_NAME];
+                        event.waitUntil(
+                            caches.keys().then(cacheNames => {
+                                return Promise.all(
+                                    cacheNames.map(cacheName => {
+                                        if (cacheWhitelist.indexOf(cacheName) === -1) {
+                                            return caches.delete(cacheName);
+                                        }
+                                    })
+                                );
+                            })
+                        );
+                    });
+                `;
+
+                // Create service worker blob and register it
+                const blob = new Blob([swContent], {type: 'application/javascript'});
+                const swBlobUrl = URL.createObjectURL(blob);
+
+                navigator.serviceWorker.register(swBlobUrl)
+                    .then(registration => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        // PWA Installation Logic
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+
+        // Install dialog functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const pwaDialog = document.getElementById('pwaDialog');
+            const installButton = document.getElementById('installButton');
+            const cancelButton = document.getElementById('cancelButton');
+            const installLogo = document.getElementById('installLogo');
+            let clickCount = 0;
+            let clickTimer;
+
+            // Double click on logo to show install dialog
+            if (installLogo) {
+                installLogo.addEventListener('click', function() {
+                    clickCount++;
+                    
+                    if (clickCount === 1) {
+                        clickTimer = setTimeout(() => {
+                            clickCount = 0;
+                        }, 300);
+                    } else if (clickCount === 2) {
+                        clearTimeout(clickTimer);
+                        showInstallDialog();
+                        clickCount = 0;
+                    }
+                });
+            }
+
+            // Show install dialog
+            function showInstallDialog() {
+                pwaDialog.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Hide install dialog
+            function hideInstallDialog() {
+                pwaDialog.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            // Install button click
+            installButton.addEventListener('click', async () => {
+                hideInstallDialog();
+                
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    
+                    if (outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                        
+                        // Show success message
+                        alert('Fairytale Wedding app is being installed on your device!');
+                    }
+                    deferredPrompt = null;
+                } else {
+                    // Fallback for browsers that don't support beforeinstallprompt
+                    alert('To install this app, look for the "Add to Home Screen" option in your browser menu.');
+                }
+            });
+
+            // Cancel button click
+            cancelButton.addEventListener('click', hideInstallDialog);
+
+            // Close dialog when clicking outside
+            pwaDialog.addEventListener('click', (e) => {
+                if (e.target === pwaDialog) {
+                    hideInstallDialog();
+                }
+            });
+        });
+
         // Initialize AOS
         AOS.init({
             duration: 1200,
@@ -1168,6 +1431,46 @@
             // Update particles on resize
             if (typeof pJSDom !== 'undefined' && pJSDom.length > 0) {
                 pJSDom[0].pJS.fn.particlesRefresh();
+            }
+        });
+    </script>
+    
+    <script>
+        // Create manifest dynamically
+        document.addEventListener('DOMContentLoaded', function() {
+            const manifest = {
+                "name": "Fairytale Wedding",
+                "short_name": "FairytaleWedding",
+                "description": "Eleanor & Alexander's Fairytale Wedding Invitation",
+                "start_url": "./",
+                "display": "standalone",
+                "background_color": "#000000",
+                "theme_color": "#000000",
+                "orientation": "portrait",
+                "icons": [
+                    {
+                        "src": "./assets/logo.png",
+                        "sizes": "192x192",
+                        "type": "image/png",
+                        "purpose": "any maskable"
+                    },
+                    {
+                        "src": "./assets/logo.png",
+                        "sizes": "512x512",
+                        "type": "image/png",
+                        "purpose": "any maskable"
+                    }
+                ],
+                "categories": ["lifestyle", "events"],
+                "prefer_related_applications": false
+            };
+
+            // Create manifest blob and set href
+            const manifestElement = document.querySelector('link[rel="manifest"]');
+            if (manifestElement) {
+                const blob = new Blob([JSON.stringify(manifest, null, 2)], {type: 'application/json'});
+                const url = URL.createObjectURL(blob);
+                manifestElement.href = url;
             }
         });
     </script>
